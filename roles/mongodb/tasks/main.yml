@@ -1,4 +1,37 @@
-- name: test for mongodb
-  debug:
-    msg: mongodb
+#PRINT "Enable Mongodb"
+  #systemctl enable mongod &>>$LOG
+ #STAT $?
 
+ #PRINT "Start Mongodb"
+ # systemctl restart mongod &>>$LOG
+#  STAT $?
+
+ # APP_LOC=/tmp
+ # CONTENT=mongodb-main
+ # DOWNLOAD_APP_CODE
+
+  #cd mongodb-main &>>$LOG
+
+ # PRINT "Load Catalogue Schema"
+ # mongo < catalogue.js &>>$LOG
+ # STAT $?
+
+ # PRINT "Load User Schema"
+ # mongo < users.js &>>$LOG
+#  STAT $?
+
+- name: Copy MongoDB YUM Repo File
+  ansible.builtin.copy:
+    src: mongodb.repo
+    dest: /etc/yum.repos.d/mongodb.repo
+
+- name: Install MongoDB
+  ansible.builtin.yum:
+    name: mongodb
+    state: installed
+
+- name: Update MongoDB Listen Address
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
