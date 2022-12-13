@@ -1,6 +1,4 @@
-
-
-    #SYSTEMD_SETUP
+  #SYSTEMD_SETUP
 
 - name: Configure NodeJS repo
   ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
@@ -19,3 +17,7 @@
   community.general.npm:
     path: "{{ APP_LOC }}"
 
+- name: SystemD tasks
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd
