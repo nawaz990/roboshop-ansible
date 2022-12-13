@@ -3,13 +3,6 @@
 #sed -i -e '/catalogue/ s/localhost/dev-catalogue.devopsn69.online/' -e '/user/ s/localhost/dev-user.devopsn69.online/' -e '/cart/ s/localhost/dev-cart.devopsn69.online/' -e '/shipping/ s/localhost/dev-shipping.devopsn69.online/' -e '/payment/ s/localhost/dev-payment.devopsn69.online/' /etc/nginx/default.d/roboshop.conf
 #STAT $?
 
-#PRINT "Enable Nginx Service"
-#systemctl enable nginx &>>$LOG
-#STAT $?
-
-#PRINT "Start Nginx Service"
-#systemctl restart nginx &>>$LOG
-#STAT $?
 
 - name: Install Nginx
   ansible.builtin.yum:
