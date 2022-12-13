@@ -20,7 +20,7 @@
  # mongo < users.js &>>$LOG
 #  STAT $?
 
-- name: Copy MongoDB YUM Repo File
+- name: Copy MongoDB YUM repo file
   ansible.builtin.copy:
     src: mongodb.repo
     dest: /etc/yum.repos.d/mongodb.repo
