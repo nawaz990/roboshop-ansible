@@ -1,25 +1,3 @@
-#PRINT "Enable Mongodb"
-  #systemctl enable mongod &>>$LOG
- #STAT $?
-
- #PRINT "Start Mongodb"
- # systemctl restart mongod &>>$LOG
-#  STAT $?
-
- # APP_LOC=/tmp
- # CONTENT=mongodb-main
- # DOWNLOAD_APP_CODE
-
-  #cd mongodb-main &>>$LOG
-
- # PRINT "Load Catalogue Schema"
- # mongo < catalogue.js &>>$LOG
- # STAT $?
-
- # PRINT "Load User Schema"
- # mongo < users.js &>>$LOG
-#  STAT $?
-
 - name: Copy MongoDB YUM repo file
   ansible.builtin.copy:
     src: mongodb.repo
