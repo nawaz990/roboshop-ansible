@@ -1,18 +1,4 @@
-#  NODEJS() {
- #   APP_LOC=/home/roboshop
-  #  CONTENT=$COMPONENT
-  #  APP_USER=roboshop
-  #  PRINT "Install NodeJS Repos"
-  # curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$LOG
-  #  STAT $?
-  # DOWNLOAD_APP_CODE
 
-    #mv ${COMPONENT}-main ${COMPONENT}
-    #cd ${COMPONENT}
-
-    #PRINT "Install NodeJS Dependencies for App"
-    #npm install &>>$LOG
-    #STAT $?
 
     #SYSTEMD_SETUP
 
@@ -28,4 +14,8 @@
   ansible.builtin.include_role:
     name: common
     tasks_from: download-app-code
+
+- name: Install NodeJS Dependencies
+  community.general.npm:
+    path: "{{ APP_LOC }}"
 
