@@ -1,5 +1,3 @@
-  #SYSTEMD_SETUP
-
 - name: Configure NodeJS repo
   ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
 
@@ -16,6 +14,12 @@
 - name: Install NodeJS Dependencies
   community.general.npm:
     path: "{{ APP_LOC }}"
+
+- name: Load Schema
+  when: LOAD_SCHEMA
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: "{{DBTYPE}}"
 
 - name: SystemD tasks
   ansible.builtin.include_role:
