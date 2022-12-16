@@ -29,5 +29,5 @@
     idempotent: yes
   loop:
     - catalogue
-    - users
+    -  users
 
