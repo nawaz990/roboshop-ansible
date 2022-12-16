@@ -1,8 +1,3 @@
-#PRINT "Restart ${COMPONENT}"
-#systemctl daemon-reload &>>$LOG && systemctl restart ${COMPONENT} &>>$LOG && systemctl enable ${COMPONENT} &>>$LOG
-#STAT $?
-
-
 - name: Setup SystemD service file
   ansible.builtin.template:
     src: systemd.service
