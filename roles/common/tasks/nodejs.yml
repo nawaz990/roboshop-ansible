@@ -1,16 +1,13 @@
-- name: Configure NodeJS repo
-  ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
-
+- name: Configure Nodejs repo
+  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 - name: Install NodeJS
   ansible.builtin.yum:
     name: nodejs
     state: installed
-
-- name: Include Download App Code Tasks From Common Role
+- name: Include Download App Code Tasks from Common Role
   ansible.builtin.include_role:
     name: common
     tasks_from: download-app-code
-
 - name: Install NodeJS Dependencies
   community.general.npm:
     path: "{{ APP_LOC }}"
@@ -20,6 +17,11 @@
   ansible.builtin.include_role:
     name: common
     tasks_from: "{{DBTYPE}}"
+#- name: Load Schema
+#  when: LOAD_SCHEMA
+#  ansible.builtin.include_role:
+#    name: common
+#    tasks_from: "{{DBTYPE}}"
 
 - name: SystemD tasks
   ansible.builtin.include_role:
