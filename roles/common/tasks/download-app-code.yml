@@ -1,4 +1,5 @@
-- name: Add Roboshop Application User
+
+- name: Add RoboShop Application User
   when: APP_USER is defined
   ansible.builtin.user:
     name: "{{ APP_USER }}"
@@ -8,15 +9,14 @@
     path: "{{ APP_LOC }}"
     state: absent
 
-
 - name: Download App Content & Extract it
   ansible.builtin.unarchive:
-    src: https://github.com/nawaz990/{{COMPONENT}}/archive/refs/heads/main.zip
+    src: https://github.com/raghudevopsb69/{{COMPONENT}}/archive/refs/heads/main.zip
     dest: "/tmp"
     remote_src: yes
 
 - name: Copy Extracted App Content to App Location
   ansible.builtin.copy:
     src: /tmp/{{COMPONENT}}-main/
-    dest: "{{ APP_LOC }}"
+    dest: "{{ APP_LOC }}/"
     remote_src: yes

@@ -2,32 +2,20 @@
   ansible.builtin.copy:
     src: mongodb.repo
     dest: /etc/yum.repos.d/mongodb.repo
+
 - name: Install MongoDB
   ansible.builtin.yum:
     name: mongodb-org
     state: installed
+
 - name: Update MongoDB Listen Address
   ansible.builtin.replace:
     path: /etc/mongod.conf
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
+
 - name: Start MongoDB
   ansible.builtin.systemd:
     name: mongod
     state: restarted
     enabled: yes
-
-- name: Download App Content & Extract it
-  ansible.builtin.unarchive:
-    src: "https://github.com/roboshop-devops-project/{{COMPONENT}}/archive/main.zip"
-    dest: "/tmp"
-    remote_src: yes
-
-- name: Load Schema
-  community.mongodb.mongodb_shell:
-    file: "/tmp/mongodb-main/{{item}}.js"
-    idempotent: yes
-  loop:
-    - catalogue
-    -  users
-
