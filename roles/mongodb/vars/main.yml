@@ -1,3 +1,2 @@
 COMPONENT: mongodb
-DBTYPE: mongo
-LOAD_SCHEMA: yes
+
